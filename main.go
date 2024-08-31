@@ -44,9 +44,14 @@ func fibonacciAppend(slice []int, elems ...int) []int {
 }
 
 func main() {
+	slice1 := []int{}
 	slice := make([]int, 0, 1)
-	for i := 0; i < 50; i++ {
+	for i := 0; i < 100; i++ {
 		slice = fibonacciAppend(slice, i)
-		fmt.Printf("After appending %d: len=%d cap=%d\n", i, len(slice), cap(slice))
+		slice1 = append(slice1, i)
+		fmt.Println("---------------------------------------------------")
+		fmt.Printf("After appending %d: len=%d cap=%d\n", i, len(slice1), cap(slice1))
+	
+		fmt.Printf("Slice 1 after appending %d: len=%d cap=%d\n", i, len(slice), cap(slice))
 	}
 }
