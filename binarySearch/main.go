@@ -1,7 +1,7 @@
 package main
 
 import (
-	Utils "binarySearch/Utils"
+	"binarySearch/Utils"
 	"fmt"
 )
 
