@@ -17,10 +17,20 @@ func main() {
 	minHeapify := Utils.Heapify(data, "min")
 	minHeapify()
 	Utils.PrintTree(data)
-	fmt.Println("----------Deleting from the min heap-------------------")
-	Utils.DeleteFromHeap(data, "min")
-	Utils.PrintTree(data)
-	fmt.Println("----------Deleting again from the min heap-------------------")
-	Utils.DeleteFromHeap(data, "min")
-	Utils.PrintTree(data)
+	fmt.Println("----------Deleting for the 1st time the min heap-------------------")
+	newHeap := Utils.DeleteFromHeap(data[:len(data)-1], "min")
+	Utils.PrintTree(newHeap)
+	fmt.Println("----------Deleting for the 2nd  time the min heap-------------------")
+	newHeap = Utils.DeleteFromHeap(data[:len(data)-2], "min")
+	Utils.PrintTree(newHeap)
+
+	fmt.Println("----------Deleting for the 3rd time the min heap-------------------")
+	newHeap = Utils.DeleteFromHeap(data[:len(data)-3], "min")
+	Utils.PrintTree(newHeap)
+	for i := 4; i < len(data); i++ {
+		fmt.Printf("----------Deleting for the %v time the min heap-------------------\n", i)
+		newHeap = Utils.DeleteFromHeap(data[:len(data)-i], "min")
+		Utils.PrintTree(newHeap)
+	}
+
 }
