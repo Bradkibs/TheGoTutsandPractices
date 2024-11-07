@@ -28,7 +28,7 @@ func main() {
 	newHeap = Utils.DeleteFromHeap(data[:len(data)-3], "min")
 	Utils.PrintTree(newHeap)
 	for i := 4; i < len(data); i++ {
-		fmt.Printf("----------Deleting for the %v time the min heap-------------------\n", i)
+		fmt.Printf("----------Deleting for the %vth time the min heap-------------------\n", i)
 		newHeap = Utils.DeleteFromHeap(data[:len(data)-i], "min")
 		Utils.PrintTree(newHeap)
 	}
