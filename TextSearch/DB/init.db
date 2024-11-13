@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXIST documents (
+id SERIAL PRIMARY KEY
+title TEXT,
+content TEXT,
+tsv tsvector
+);
+
+CREATE INDEX documents_tsv_idx ON documents USING GIN (tsv);
