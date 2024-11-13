@@ -18,12 +18,15 @@ func Config() *pgxpool.Config {
 	const defaultHealthCheckPeriod = time.Minute
 	const defaultConnectTimeout = time.Second * 5
 
-	err := godotenv.Load()
+	err := godotenv.Load("DB/.env")
 	if err != nil {
 		log.Fatal("error loading .env file")
 	}
-	DATABASE_URL := os.Getenv("PG_DB")
-	dbConfig, err := pgxpool.ParseConfig(DATABASE_URL)
+	databaseUrl := os.Getenv("PG_DB")
+	if databaseUrl == "" {
+		log.Fatal("PG_DB environment variable not set or is empty")
+	}
+	dbConfig, err := pgxpool.ParseConfig(databaseUrl)
 	if err != nil {
 		log.Fatal("Failed to create a config, error: ", err)
 	}

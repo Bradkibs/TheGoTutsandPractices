@@ -1,5 +1,5 @@
-CREATE TABLE IF NOT EXIST documents (
-id SERIAL PRIMARY KEY
+CREATE TABLE IF NOT EXISTS documents (
+id SERIAL PRIMARY KEY,
 title TEXT,
 content TEXT,
 tsv tsvector

@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func Connect() (*pgxpool.Conn, error) {
+func Connect() (*pgxpool.Pool, error) {
 	connPool, err := pgxpool.NewWithConfig(context.Background(), Config())
 	if err != nil {
 		log.Fatal("Error while creating connection to the databse!!")
@@ -23,6 +23,5 @@ func Connect() (*pgxpool.Conn, error) {
 	}
 	log.Println("Connected to the database!!")
 
-	defer connPool.Close()
-	return conn, err
+	return connPool, err
 }

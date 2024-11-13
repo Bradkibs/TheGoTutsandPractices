@@ -16,7 +16,7 @@ func searchDatabase(query string) ([]Doc, error) {
 
 	sql := `SELECT id, title, content FROM documents WHERE tsv @@ to_tsquery('english', $1);`
 
-	rows, err := conn.Query(context.Background(), sql, searchQuery)
+	rows, err := pool.Query(context.Background(), sql, searchQuery)
 	if err != nil {
 		return nil, err
 	}
