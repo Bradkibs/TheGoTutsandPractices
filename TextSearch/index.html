@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Search</title>
+</head>
+<body>
+<h1>Real-Time Full-Text Search</h1>
+<input type="text" id="search" placeholder="Enter search term..." />
+<button onclick="search()">Search</button>
+<ul id="results"></ul>
+
+<script>
+    const ws = new WebSocket("ws://localhost:3000/ws/search");
+
+    ws.onmessage = (event) => {
+        const results = JSON.parse(event.data);
+        const resultsList = document.getElementById("results");
+        resultsList.innerHTML = "";
+        results.forEach((doc) => {
+            const item = document.createElement("li");
+            item.textContent = `${doc.title}: ${doc.content}`;
+            resultsList.appendChild(item);
+        });
+    };
+
+    function search() {
+        const query = document.getElementById("search").value;
+        ws.send(JSON.stringify(query));
+    }
+</script>
+</body>
+</html>
