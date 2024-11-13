@@ -49,7 +49,7 @@ func handleWebSocket(c *websocket.Conn, pool *pgxpool.Pool) {
 }
 
 func handleSearchAction(c *websocket.Conn, pool *pgxpool.Pool, query string) {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
 	conn, err := pool.Acquire(ctx)

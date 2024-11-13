@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/websocket/v2"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"log"
@@ -18,6 +19,10 @@ func main() {
 	}
 	defer pool.Close()
 	app := fiber.New()
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+	}))
 
 	app.Get("/ws/search", websocket.New(func(c *websocket.Conn) { handleWebSocket(c, pool) }))
 	// This endpoint adds searchable docs
