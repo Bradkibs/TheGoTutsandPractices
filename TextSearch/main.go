@@ -20,6 +20,7 @@ func main() {
 	app := fiber.New()
 
 	app.Get("/ws/search", websocket.New(func(c *websocket.Conn) { handleWebSocket(c, pool) }))
-
+	// This endpoint adds searchable docs
+	app.Post("/docs", func(ctx *fiber.Ctx) error { return handleAddDocs(ctx, pool) })
 	log.Fatal(app.Listen(":3000"))
 }
