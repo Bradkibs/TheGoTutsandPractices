@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-// Inplace merge sort
 func mergeSort(list *[]int, low int, high int) {
 	if low < high {
 		mid := (low + high) / 2
