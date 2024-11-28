@@ -26,4 +26,12 @@ func main() {
 	}
 
 	fmt.Println("The result of maximizing the profit on the jobs is by taking jobs: ", result, " in their respective order and the profit is: ", profit)
+
+	resultMin := helpers.Sequencer(sequenceMatrix, "minimize")
+	profitMin := 0
+	for _, item := range resultMin {
+		profitMin += sequenceMatrix[item][0]
+	}
+
+	fmt.Println("The result of minimizing the profit on the jobs is by taking jobs: ", resultMin, " in their respective order and the profit is: ", profitMin)
 }

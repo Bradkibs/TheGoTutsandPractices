@@ -55,7 +55,7 @@ func sorter(sequenceMatrix map[string][]int, sequenceType string) []job {
 		})
 	case "minimize":
 		sort.Slice(jobs, func(i int, j int) bool {
-			return jobs[i].profit > jobs[j].profit
+			return jobs[i].profit < jobs[j].profit
 		})
 	default:
 		sort.Slice(jobs, func(i int, j int) bool {
