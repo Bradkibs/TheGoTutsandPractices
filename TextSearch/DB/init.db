@@ -6,3 +6,4 @@ tsv tsvector
 );
 
 CREATE INDEX documents_tsv_idx ON documents USING GIN (tsv);
+

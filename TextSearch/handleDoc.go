@@ -35,7 +35,7 @@ func handleAddDocs(c *fiber.Ctx, pool *pgxpool.Pool) error {
 	}
 	defer tx.Rollback(ctx)
 
-	query := `INSERT INTO documents (title, content, tsv) VALUES ($1, $2, to_tsvector($1 || ' ' || $2) )`
+	query := `INSERT INTO documents (title, content, tsv) VALUES ($1, $2, to_tsvector(COALESCE($1, '') || ' ' || COALESCE($2, '')))`
 
 	for _, doc := range docs.Docs {
 		_, err := tx.Exec(ctx, query, doc.Title, doc.Content)

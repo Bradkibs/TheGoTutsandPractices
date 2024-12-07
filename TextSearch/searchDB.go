@@ -14,7 +14,7 @@ type Doc struct {
 func searchDatabase(query string) ([]Doc, error) {
 	searchQuery := fmt.Sprintf("%s:*", query)
 
-	sql := `SELECT id, title, content FROM documents WHERE tsv @@ to_tsquery('english', $1);`
+	sql := `SELECT id, title, content FROM documents WHERE tsv @@ to_tsquery('english', $1) ORDER BY ts_rank_cd(tsv,to_tsquery('english',$1));`
 
 	rows, err := pool.Query(context.Background(), sql, searchQuery)
 	if err != nil {
